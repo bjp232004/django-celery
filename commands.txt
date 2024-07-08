@@ -1,0 +1,14 @@
+python3 -m venv venv       
+
+source venv/bin/activate   
+pip install django
+django-admin startproject dcelery
+cd dcelery
+pip freeze > requirements.txt
+pip install celery
+pip install redis
+pip freeze > requirements.txt
+
+chmod +x ./entrypoint.sh 
+docker-compose up -d --build
+docker exec -it django /bin/sh
